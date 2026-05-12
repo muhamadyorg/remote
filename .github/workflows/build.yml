@@ -39,7 +39,7 @@ jobs:
           pip install buildozer cython virtualenv
 
       - name: Cache Buildozer
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.buildozer
           key: buildozer-${{ hashFiles('buildozer.spec') }}
@@ -49,7 +49,7 @@ jobs:
         run: buildozer android debug 2>&1 | tee build.log
 
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: RemoteLink-APK
           path: bin/*.apk
@@ -57,7 +57,7 @@ jobs:
 
       - name: Upload log if failed
         if: failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build-log
           path: build.log
